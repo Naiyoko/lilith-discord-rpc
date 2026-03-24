@@ -5,12 +5,15 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+# Set app ID
 APP_ID = os.getenv("APP_ID")
+
+# Set up crazy old start time
 hours = 1_200_000
 start_offset = hours * 60 * 60
 START_TIME = max(1, int(time.time()) - start_offset)
 
-# These obviously aren't used in the current context
+# Not used in current version of application, see notes below
 quotes = [
     '"How could I meet you?" In the end, I chose this game.',
     "I love you so deeply - it's not just a hobby, it's a way of life, my spiritual pillar, you're my role model.",
@@ -34,12 +37,13 @@ rpc.connect()
 
 quote_cycle = itertools.cycle(quotes)
 
-print("Lilith has awakened.")
+# Begin infinite loop to cycle quotes
+# Current iteration does not cycle quotes and instead uses fixed text. To use the changing quotes,
+# change any of the text fields to current_quote. Text fields include: details, state, large_text, buttons.
 try:
     while True:
+
         current_quote = next(quote_cycle)
-        print(len(current_quote))
-        print(current_quote)
 
         rpc.update(
             details="She poses a question: 'Do I exist?'",
@@ -47,8 +51,9 @@ try:
             start=START_TIME,
             large_image="lilith",
             large_text="The NOexistenceN of you AND me",
-            buttons=[{"label": "You exist.", "url": "https://www.youtube.com/watch?v=CuI1XU79W0Q"},
-                     {"label": "Play the game", "url": "https://store.steampowered.com/app/2873080/The_NOexistenceN_of_you_AND_me/"}
+            buttons=[
+                {"label": "You exist.", "url": "https://www.youtube.com/watch?v=CuI1XU79W0Q"},
+                {"label": "Play the game", "url": "https://store.steampowered.com/app/2873080/The_NOexistenceN_of_you_AND_me/"}
             ]
         )
 
@@ -56,27 +61,4 @@ try:
 
 except KeyboardInterrupt:
     rpc.clear()
-    print("Presence ended.")
-
-
-
-#print("Lilith has awakened.")
-#try:
-#    while True:
-#        current_quote = next(quote_cycle)
-#       print(len(current_quote))
-#        print(current_quote)##
-#
-#        rpc.update(
-#            details=current_quote,
-#            state="-Lilith: The Purest Concept of Love",
-#            state="This game challenges your perception of the world around you. Your reality, existence, and the way you think.",
-#            start=START_TIME,
-#            large_image="lilith",
-#            large_text="The NOexistenceN of you AND me",
-#            buttons=[{"label": "You exist.", "url": "https://www.youtube.com/watch?v=CuI1XU79W0Q"},
-#                   #  {"label": "Buy the game", "url": "https://www.youtube.com/watch?v=2b1k8a3g0d4"}
-#            ]
-#        )#
-#
-#        time.sleep(300)   
+    print("App exited.")
