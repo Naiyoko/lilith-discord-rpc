@@ -12,10 +12,10 @@ Step 2: Place your desired image in your app, named "lilith" (Rich presence -> A
 
 Step 3: Clone repo to IDE of your choice
 
-Step 3: Copy your APP ID (from the app you made earlier), and set it in your .env (APP_ID = "Your ID here")
+Step 4: Copy your APP ID (from the app you made earlier), and set it in your .env (APP_ID = "Your ID here")
 
-Step 4: Create a venv in your IDE terminal and activate it.
+Step 5: Create a venv in your IDE terminal and activate it.
 
-Step 5: Install dependencies from requirements.txt
+Step 6: Install dependencies from requirements.txt
 
-Step 6: Run
+Step 7: Run
